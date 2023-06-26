@@ -1,6 +1,8 @@
-FROM registry.fedoraproject.org/fedora-minimal:34
+FROM registry.access.redhat.com/ubi9/python-39
 
-RUN microdnf -y install git libpq postgresql python3 && microdnf clean all
+USER root
+
+RUN dnf -y install git libpq postgresql python3 && dnf clean all
 
 RUN pip3 install httpx psycopg psycopg_pool starlette sse_starlette uvicorn
 

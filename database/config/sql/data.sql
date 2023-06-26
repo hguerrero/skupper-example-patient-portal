@@ -40,7 +40,8 @@ create table bills (
     patient_id          integer not null references patients,
     summary             varchar,
     amount              integer not null default 0,
-    date_paid           date
+    date_paid           date,
+    payment_processor   varchar
 );
 
 create or replace function notify_changes() returns trigger as $$
@@ -97,4 +98,12 @@ values
   ('Miranda Bailey', '555-555-1006', 'chief@example.net');
 
 insert into bills (patient_id, summary, amount)
-values (1, 'Knee surgery', 50);
+values (1, 'Knee surgery', 500);
+insert into bills (patient_id, summary, amount)
+values (2, 'Checkup', 100);
+insert into bills (patient_id, summary, amount)
+values (3, 'Eye surgery', 250);
+insert into bills (patient_id, summary, amount)
+values (3, 'Pre-op appointment', 15);
+insert into bills (patient_id, summary, amount)
+values (5, 'Blood work', 50);

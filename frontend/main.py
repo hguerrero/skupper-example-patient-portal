@@ -167,9 +167,10 @@ async def post_bill_pay(request):
 
     async with pool.connection() as conn:
         await conn.execute("update bills "
-                           "set date_paid = current_date "
+                           "set date_paid = current_date, "
+                           "payment_processor = %s"
                            "where id = %s",
-                           (data["bill"],))
+                           (response.text, data["bill"],))
 
     return CustomJsonResponse({"error": None})
 

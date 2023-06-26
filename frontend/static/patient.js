@@ -76,6 +76,7 @@ const billTable = new gesso.Table("bill-table", [
     ["Summary", "summary"],
     ["Amount", "amount", amount => `$${amount}`],
     ["Date paid", "date_paid", date => nvl(date, "-")],
+    ["Processor", "payment_processor", processor => nvl(processor, "-")],
     ["", "id", id => gesso.createLink(null, `/bill/pay?bill=${id}`, {class: "button", text: "Pay"})],
 ]);
 

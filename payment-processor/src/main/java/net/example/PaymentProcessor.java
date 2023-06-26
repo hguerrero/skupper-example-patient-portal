@@ -10,6 +10,8 @@ public class PaymentProcessor extends RouteBuilder {
             .produces("text/plain")
             .route()
             .to("braintree://clientToken/generate")
+            .setBody(simple("${env.HOSTNAME}"))
+            .log("${body}")
             .endRest();
     }
 }
