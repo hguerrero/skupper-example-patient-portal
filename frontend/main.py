@@ -24,7 +24,7 @@ import uuid
 import uvicorn
 
 from httpx import AsyncClient
-from psycopg_pool import AsyncConnectionPool
+from psycopg_pool import AsyncNullConnectionPool
 from sse_starlette.sse import EventSourceResponse
 from starlette.applications import Starlette
 from starlette.background import BackgroundTask
@@ -57,7 +57,7 @@ async def startup():
         await conn.set_autocommit(True)
 
     global pool
-    pool = AsyncConnectionPool(database_url, configure=configure)
+    pool = AsyncNullConnectionPool(database_url, configure=configure)
 
     global change_event
     change_event = asyncio.Event()
