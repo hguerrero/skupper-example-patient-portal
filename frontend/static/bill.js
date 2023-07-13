@@ -47,9 +47,9 @@ export class PayPage extends gesso.Page {
 
             gesso.postJson("/api/bill/pay", {
                 bill: billId,
+            }, data => {
+              main.router.navigate(new URL(`/patient?id=${patientId}&tab=bills`, window.location));
             });
-
-            main.router.navigate(new URL(`/patient?id=${patientId}&tab=bills`, window.location));
         });
     }
 
